@@ -1,8 +1,10 @@
 import React from 'react';
-import {useTable, usePagination} from 'react-table';
-import {Table, Form} from 'react-bootstrap'
+import {useTable, usePagination,useGlobalFilter, useSortBy} from 'react-table';
+import {Table, Form} from 'react-bootstrap';
+import GlobalFilter from '../../utils/tables/GlobalFilter'
 
 function FacilitiesTable({data,columns}) {
+  const tableInstance = useTable({data,columns}, useGlobalFilter,useSortBy,usePagination)
     const {
         getTableProps,
         getTableBodyProps,
@@ -21,28 +23,33 @@ function FacilitiesTable({data,columns}) {
         previousPage,
         setPageSize,
         pageIndex,
-        pageSize,
+        state,
+        setGlobalFilter
         
-      } = useTable({
-        columns,
-        data,
-      },
-      usePagination)
+      } = tableInstance;
     
+      const {globalFilter, pageSize} = state;
       return (
-        <div>
-          <Form.Control as="select" className="w-25 shadow-none m-2"
-           value={pageSize}
-           onChange={e => {
-             setPageSize(Number(e.target.value))
-           }}
-         >
-           {[10, 20, 30, 40, 50].map(pageSize => (
-             <option key={pageSize} value={pageSize}>
-               Show {pageSize}
-             </option>
-           ))}
-         </Form.Control>
+        <div className="container">
+          <h1 className="h1 mt-3 text-center">Facilities</h1>
+          <div className="d-flex justify-content-between">
+            <Form.Control as="select" className="w-25 shadow-none m-2"
+            value={pageSize}
+            onChange={e => {
+              setPageSize(Number(e.target.value))
+            }}
+          >
+            {[10, 20, 30, 40, 50].map(pageSize => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </Form.Control>
+          <Form.Control className="w-25 shadow-none m-2" type = "text" placeholder="Search (e.g. Facility/Location)" value={globalFilter||''} 
+              onChange={e=> setGlobalFilter(e.target.value)}>
+          </Form.Control>
+          </div>
+        
         <Table responsive {...getTableProps()}>
           <thead>
             {headerGroups.map(headerGroup => (

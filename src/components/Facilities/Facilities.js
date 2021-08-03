@@ -25,6 +25,7 @@ function Facilities() {
             {
                 Header: '#',
                 accessor: '#', // accessor is the "key" in the data
+                disableGlobalFilter: true
             },
             {
                 Header: 'Facility Name',
@@ -45,14 +46,17 @@ function Facilities() {
             {
                 Header: 'Total Patient Admitted',
                 accessor: 't_patient_adm',
+                disableGlobalFilter: true
             },
             {
                 Header: 'Total Patient in ER',
                 accessor: 't_patient_er',
+                disableGlobalFilter: true
             },
             {
                 Header: 'Total Patient in ICU',
                 accessor: 't_patient_icu',
+                disableGlobalFilter: true
             }
           ],
           []
