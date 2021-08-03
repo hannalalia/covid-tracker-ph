@@ -1,7 +1,9 @@
 import React from 'react';
 import {useTable, usePagination,useGlobalFilter, useSortBy} from 'react-table';
-import {Table, Form} from 'react-bootstrap';
-import GlobalFilter from '../../utils/tables/GlobalFilter'
+import {Table, Form, Button} from 'react-bootstrap';
+import GlobalFilter from '../../utils/tables/GlobalFilter';
+import { MdExpandMore,MdExpandLess } from "react-icons/md";
+import { BiSort } from "react-icons/bi";
 
 function FacilitiesTable({data,columns}) {
   const tableInstance = useTable({data,columns}, useGlobalFilter,useSortBy,usePagination)
@@ -32,8 +34,8 @@ function FacilitiesTable({data,columns}) {
       return (
         <div className="container">
           <h1 className="h1 mt-3 text-center">Facilities</h1>
-          <div className="d-flex justify-content-between">
-            <Form.Control as="select" className="w-25 shadow-none m-2"
+          <div className="row justify-content-between my-3 mx-1">
+            <Form.Control as="select" className="w-25 shadow-none"
             value={pageSize}
             onChange={e => {
               setPageSize(Number(e.target.value))
@@ -45,17 +47,21 @@ function FacilitiesTable({data,columns}) {
               </option>
             ))}
           </Form.Control>
-          <Form.Control className="w-25 shadow-none m-2" type = "text" placeholder="Search (e.g. Facility/Location)" value={globalFilter||''} 
+          <Form.Control className="w-25 shadow-none" type = "text" placeholder="Search (e.g. Facility/Location)" value={globalFilter||''} 
               onChange={e=> setGlobalFilter(e.target.value)}>
           </Form.Control>
           </div>
         
-        <Table responsive {...getTableProps()}>
-          <thead>
+        <Table responsive striped bordered hover size="sm" {...getTableProps()}>
+          <thead className="">
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
+                   <span className="d-inline">
+                      {column.canSort? (column.isSorted ? (column.isSortedDesc ? (<MdExpandMore/>): (<MdExpandLess/>)):''):'' }
+                    </span>
+                  </th>
                 ))}
               </tr>
             ))}
@@ -72,7 +78,12 @@ function FacilitiesTable({data,columns}) {
               )
             })}
           </tbody>
-        </Table>         
+        </Table> 
+            <div>
+                <Button variant="primary shadow-none mx-2" size="sm" onClick={()=>canPreviousPage?previousPage():''} >{'Prev'}</Button>
+
+                <Button variant="primary shadow-none mx-2" size="sm" onClick={()=>canNextPage?nextPage():''} >{'Next'}</Button>
+            </div>                    
        </div>
       )
     }

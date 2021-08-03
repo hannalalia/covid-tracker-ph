@@ -44,17 +44,17 @@ function Facilities() {
                 accessor: 'region',
             }, 
             {
-                Header: 'Total Patient Admitted',
+                Header: 'Patient Admitted',
                 accessor: 't_patient_adm',
                 disableGlobalFilter: true
             },
             {
-                Header: 'Total Patient in ER',
+                Header: 'Patient in ER',
                 accessor: 't_patient_er',
                 disableGlobalFilter: true
             },
             {
-                Header: 'Total Patient in ICU',
+                Header: 'Patient in ICU',
                 accessor: 't_patient_icu',
                 disableGlobalFilter: true
             }
