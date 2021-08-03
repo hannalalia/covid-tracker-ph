@@ -78,8 +78,8 @@ function Facilities() {
         [fetchedData]
       )
     return (
-        <div>
-            <FacilitiesTable columns={columns} data={data}>
+        <div className="mb-5">
+            <FacilitiesTable columns={columns} data={data} >
             </FacilitiesTable>
         </div>
     )
