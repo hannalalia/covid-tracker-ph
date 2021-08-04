@@ -1,5 +1,4 @@
-import React, {useMemo, useState, useEffect} from 'react'
-import FacilitiesTable from '../../utils/tables/FacilitiesTable';
+import React, {useState, useEffect} from 'react'
 import axios from '../../utils/axios/BaseUrl'
 import {useParams} from 'react-router-dom'
 import {Button} from 'react-bootstrap';
