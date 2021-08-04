@@ -19,7 +19,6 @@ function Facilities() {
 
     const [fetchedData, setFetchedData] = useState([]);
 
-    console.log(fetchedData)
     const columns = useMemo(
         () => [
             {
