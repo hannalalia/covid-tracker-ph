@@ -7,11 +7,11 @@ function Facilities() {
     useEffect(() => {
         async function fetchData(){
             const response = await axios.get('/api/facilities');
+            console.log(response);
             const formattedData = response.data.data.map((field,index) => {
-             
                 return {"#":index+1,cf_name: field.cf_name, city_mun:field.city_mun, 
                 province:field.province, region:field.region,t_patient_adm:field.t_patient_adm,
-                t_patient_er:field.t_patient_er,t_patient_icu: field.t_patient_icu,"button":index+1}
+                t_patient_er:field.t_patient_er,t_patient_icu: field.t_patient_icu,"button":field.hfhudcode}
             })
 
             setFetchedData(formattedData);    
@@ -21,7 +21,7 @@ function Facilities() {
     }, [])
 
     const [fetchedData, setFetchedData] = useState([]);
-
+   
     const columns = useMemo(
         () => [
             {
