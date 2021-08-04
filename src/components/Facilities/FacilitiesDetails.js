@@ -7,29 +7,26 @@ function FacilitiesDetails() {
     useEffect(() => {
         async function fetchData(){
             const response = await axios.get('/api/facilities');
-            setRawData(response.data.data);
-   
+            const details = response.data.data.filter(data=> data.hfhudcode === hfhudcode)
+            setDetails(details);   
         }
         fetchData(); 
-        
+
     }, [])
 
-    const [rawData, setRawData] = useState([]);
-
-
-    let details = rawData.filter((data)=>
-        data.hfhudcode === hfhudcode
-    )
-    
+    const [details, setDetails] = useState([]);
     console.log(details)
-    
+  
     return (
         <div className="mb-5">
-            <ul class="list-group list-group-flush">
-                {Object.keys(details[0]).map((key)=>{
-                     return <li key={key} class="list-group-item"><b>{key +": "}</b>{details[0][key]}</li>
+            {details.length>0 ? 
+            (<ul class="list-group list-group-flush">
+            {Object.keys(details[0]).map((key)=>{
+                     return (<li key={key} class="list-group-item"><b>{key +": "}</b>{details[0][key]}</li>)
                 })}
-            </ul>                
+            </ul>):'Facility not found'
+            }
+                           
         </div>
     )
 }
