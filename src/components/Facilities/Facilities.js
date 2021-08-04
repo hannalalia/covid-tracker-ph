@@ -1,6 +1,7 @@
 import React, {useMemo, useState, useEffect} from 'react'
 import FacilitiesTable from '../../utils/tables/FacilitiesTable';
 import axios from '../../utils/axios/BaseUrl'
+import {Button} from 'react-bootstrap';
 function Facilities() {    
 
     useEffect(() => {
@@ -8,7 +9,9 @@ function Facilities() {
             const response = await axios.get('/api/facilities');
             const formattedData = response.data.data.map((field,index) => {
              
-                return {"#":index+1,cf_name: field.cf_name, city_mun:field.city_mun, province:field.province, region:field.region,t_patient_adm:field.t_patient_adm,t_patient_er:field.t_patient_er,t_patient_icu: field.t_patient_icu}
+                return {"#":index+1,cf_name: field.cf_name, city_mun:field.city_mun, 
+                province:field.province, region:field.region,t_patient_adm:field.t_patient_adm,
+                t_patient_er:field.t_patient_er,t_patient_icu: field.t_patient_icu,"button":index+1}
             })
 
             setFetchedData(formattedData);    
@@ -56,6 +59,16 @@ function Facilities() {
                 Header: 'Patient in ICU',
                 accessor: 't_patient_icu',
                 disableGlobalFilter: true
+            },
+            { 
+                Header: '',
+                accessor:'button',
+                Cell:({value})=>{   
+                   return  (
+                   <a href={"/facilities/" + value}>
+                        <Button variant="secondary shadow-none mx-2" size="sm" >View</Button>      
+                    </a>)
+                }
             }
           ],
           []
