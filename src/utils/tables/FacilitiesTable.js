@@ -52,7 +52,8 @@ function FacilitiesTable({data,columns}) {
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())} >
+                    {column.render('Header')}
                    <span className="d-inline">
                       {column.canSort? (column.isSorted ? (column.isSortedDesc ? (<MdExpandMore/>): (<MdExpandLess/>)):''):'' }
                     </span>
@@ -65,7 +66,7 @@ function FacilitiesTable({data,columns}) {
             {pageCount>0 ? page.map((row, i) => {
               prepareRow(row)
               return (
-                <tr {...row.getRowProps()}>
+                <tr {...row.getRowProps()} className="text-uppercase">
                   {row.cells.map(cell => {
                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   })}
