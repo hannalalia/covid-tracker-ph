@@ -1,9 +1,7 @@
 import React from 'react';
 import {useTable, usePagination,useGlobalFilter, useSortBy} from 'react-table';
 import {Table, Form, Button} from 'react-bootstrap';
-import GlobalFilter from '../../utils/tables/GlobalFilter';
 import { MdExpandMore,MdExpandLess } from "react-icons/md";
-import { BiSort } from "react-icons/bi";
 
 function FacilitiesTable({data,columns}) {
   const tableInstance = useTable({data,columns}, useGlobalFilter,useSortBy,usePagination)
@@ -12,10 +10,7 @@ function FacilitiesTable({data,columns}) {
         getTableBodyProps,
         headerGroups,
         prepareRow,
-        page, // Instead of using 'rows', we'll use page,
-        // which has only the rows for the active page
-
-        // The rest of these things are super handy, too ;)
+        page, 
         canPreviousPage,
         canNextPage,
         pageOptions,
@@ -67,7 +62,7 @@ function FacilitiesTable({data,columns}) {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row, i) => {
+            {pageCount>0 ? page.map((row, i) => {
               prepareRow(row)
               return (
                 <tr {...row.getRowProps()}>
@@ -76,12 +71,13 @@ function FacilitiesTable({data,columns}) {
                   })}
                 </tr>
               )
-            })}
+            }): <tr className="text-center"><td colSpan="8">No Records Found</td></tr>
+            
+            }
           </tbody>
         </Table> 
             <div>
                 <Button variant="primary shadow-none mx-2" size="sm" onClick={()=>canPreviousPage?previousPage():''} >{'Prev'}</Button>
-
                 <Button variant="primary shadow-none mx-2" size="sm" onClick={()=>canNextPage?nextPage():''} >{'Next'}</Button>
             </div>                    
        </div>
