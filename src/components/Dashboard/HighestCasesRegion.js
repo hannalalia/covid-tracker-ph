@@ -33,10 +33,10 @@ function HighestCasesRegion() {
   }
 
   return (
-    <Fragment> 
-    <Row className="justify-content-around align-items-center">
+    <div> 
+    <Row className="justify-content-md-between justify-content-center align-items-center">
         <Col xs={10} md={7}>
-            <h2 className="h2 pt-2" style={{color:'rgba(55,71,79,1)'}}>Highest Covid Cases (Region)</h2>
+            <h2 className="h2 pt-2 text-center text-md-start" style={{color:'rgba(55,71,79,1)'}}>Highest Covid Cases (Region)</h2>
         </Col>
 
         <Col xs={10} md={3}>
@@ -55,7 +55,7 @@ function HighestCasesRegion() {
     <DoughnutChart  datasets={covidCases} labels={regionNames} title='Top 10 Covid Cases per Region'></DoughnutChart>
     }
               
-    </Fragment>
+    </div>
   );
 }
 
