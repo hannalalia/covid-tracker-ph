@@ -30,7 +30,35 @@ function FacilitiesDetails() {
         headers = [
             { label: "hfhudcode", key: "row.hfhudcode" },
             { label: "Facility", key: "row.cf_name" },
-            { label: "Update Date", key: "row.updated_date" }
+            { label: "Added Date", key: "row." },
+            { label: "Region", key: "row." },
+            { label: "Region PSGC", key: "row." },
+            { label: "Provice", key: "row." },
+            { label: "Province PSGC", key: "row." },
+            { label: "City/Municipality", key: "row." },
+            { label: "City/Municipality PSGC", key: "row." },
+            { label: "Vacant ICU", key: "row." },
+            { label: "Occupied ICU", key: "row." },
+            { label: "Vacant Isolation Bed", key: "row." },
+            { label: "Vacant Beds Ward", key: "row." },
+            { label: "Occupied Beds Ward", key: "row." },
+            { label: "Vacant Mechanical Ventilators", key: "row." },
+            { label: "Occupied Mechanical Ventilators", key: "row." },
+            { label: "Vacant Neonatal ICU (Non-Covid)", key: "row." },
+            { label: "Occupied Neonatal ICU (Non-Covid)", key: "row." },
+            { label: "Vacant Mechanical Ventilators (Non-Covid)", key: "row." },
+            { label: "Occupied Mechanical Ventilators (Non-Covid)", key: "row." },
+            { label: "Quarantine Nurse", key: "row." },
+            { label: "Qurantine Doctor", key: "row." },
+            { label: "Nurse Admitted", key: "row." },
+            { label: "Doctor Admitted", key: "row." },
+            { label: "", key: "row." },
+            { label: "", key: "row." },
+            { label: "", key: "row." },
+            { label: "", key: "row." },
+            { label: "", key: "row." },
+            { label: "", key: "row." },
+            { label: "", key: "row." },
           ];
           console.log(data)
       }
@@ -64,14 +92,8 @@ function FacilitiesDetails() {
                         <li className="list-group-item"><b>Occupied ICU:  </b>{details[0].icu_o}</li>
                         <li className="list-group-item"><b>Vacant Isolation Bed:  </b>{details[0].isolbed_v}</li>
                         <li className="list-group-item"><b>Occupied Isolation Bed:  </b>{details[0].isolbed_v}</li>
-                        <li className="list-group-item"><b>Vacant Beds Ward:  </b>{details[0].beds_ward_v}</li>
+                        <li className="list-group-item"><b>Vacant Beds Ward:  </b>{details[0].beds_ward_v}</li>    
                         <li className="list-group-item"><b>Occupied Beds Ward:  </b>{details[0].beds_ward_o}</li>
-                        <li className="list-group-item"><b>Vacant Mechanical Ventilators: </b>{details[0].mechvent_v}</li>
-                        <li className="list-group-item"><b>Occupied Mechanical Ventilators: </b>{details[0].mechvent_o}</li>
-                        <li className="list-group-item"><b>Vacant Neonatal ICU (Non-Covid):  </b>{details[0].nonicu_v_nc}</li>
-                        <li className="list-group-item"><b>Occupied Neonatal ICU (Non-Covid):  </b>{details[0].nonicu_o_nc}</li>
-                        <li className="list-group-item"><b>Vacant Mechanical Ventilators (Non-Covid):  </b>{details[0].mechvent_v_nc}</li>
-                        <li className="list-group-item"><b>Occupied Mechanical Ventilators (Non-Covid):  </b>{details[0].mechvent_o_nc}</li>
                     </ul>
               
                     </div>
@@ -79,16 +101,18 @@ function FacilitiesDetails() {
                     <div className="d-flex m-3">
 
                     <ul className="list-group flex-fill me-1">
-                    <li className="list-group-item"><b>Quarantine Nurse:  </b>{details[0].q_nurse}</li>
+                        
+                        <li className="list-group-item"><b>Vacant Mechanical Ventilators: </b>{details[0].mechvent_v}</li>
+                        <li className="list-group-item"><b>Occupied Mechanical Ventilators: </b>{details[0].mechvent_o}</li>
+                        <li className="list-group-item"><b>Vacant Neonatal ICU (Non-Covid):  </b>{details[0].nonicu_v_nc}</li>
+                        <li className="list-group-item"><b>Occupied Neonatal ICU (Non-Covid):  </b>{details[0].nonicu_o_nc}</li>
+                        <li className="list-group-item"><b>Vacant Mechanical Ventilators (Non-Covid):  </b>{details[0].mechvent_v_nc}</li>
+                        <li className="list-group-item"><b>Occupied Mechanical Ventilators (Non-Covid):  </b>{details[0].mechvent_o_nc}</li>
+                        <li className="list-group-item"><b>Quarantine Nurse:  </b>{details[0].q_nurse}</li>
                         <li className="list-group-item"><b>Qurantine Doctor:  </b>{details[0].q_doctor}</li>
                         <li className="list-group-item"><b>Nurse Admitted:  </b>{details[0].nurse_adm}</li>
                         <li className="list-group-item"><b>Doctor Admitted:  </b>{details[0].doctor_adm}</li>
-                        <li className="list-group-item"><b>Vacant Mechanical Ventilators: </b>{details[0].susp_asym}</li>
-                        <li className="list-group-item"><b>Occupied Mechanical Ventilators: </b>{details[0].susp_mild}</li>
-                        <li className="list-group-item"><b>Vacant Neonatal ICU (Non-Covid):  </b>{details[0].susp_severe}</li>
-                        <li className="list-group-item"><b>Occupied Neonatal ICU (Non-Covid):  </b>{details[0].susp_crit}</li>
-                        <li className="list-group-item"><b>Vacant Mechanical Ventilators (Non-Covid):  </b>{details[0].susp_died}</li>
-                        <li className="list-group-item"><b>Occupied Mechanical Ventilators (Non-Covid):  </b>{details[0].prob_asym}</li>
+
 
                     </ul>
                     <ul className="list-group flex-fill me-1">
