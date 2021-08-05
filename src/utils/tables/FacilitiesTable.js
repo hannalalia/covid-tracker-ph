@@ -2,8 +2,8 @@ import React from 'react';
 import {useTable, usePagination,useGlobalFilter, useSortBy} from 'react-table';
 import {Table, Form, Button} from 'react-bootstrap';
 import { MdExpandMore,MdExpandLess } from "react-icons/md";
-
-function FacilitiesTable({data,columns}) {
+import {CSVLink} from 'react-csv'
+function FacilitiesTable({data,columns,csvHeaders,csvData}) {
   const tableInstance = useTable({data,columns}, useGlobalFilter,useSortBy,usePagination)
     const {
         getTableProps,
@@ -80,6 +80,7 @@ function FacilitiesTable({data,columns}) {
             <div>
                 <Button variant="primary shadow-none mx-2" size="sm" onClick={()=>canPreviousPage?previousPage():''} >{'Prev'}</Button>
                 <Button variant="primary shadow-none mx-2" size="sm" onClick={()=>canNextPage?nextPage():''} >{'Next'}</Button>
+                <CSVLink filename={"facilities.csv"}data={csvData} headers={csvHeaders} className="btn btn-primary btn-sm shadow-none mx-2">Export CSV</CSVLink>
             </div>                    
        </div>
       )

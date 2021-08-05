@@ -23,7 +23,7 @@ function Facilities() {
     }, [])
 
     const [fetchedData, setFetchedData] = useState([]);
-   
+   //table
     const columns = useMemo(
         () => [
             {
@@ -80,10 +80,58 @@ function Facilities() {
         () => 
         fetchedData,
         [fetchedData]
-      )
+      );
+
+      //csv
+        let csvHeaders = [];
+        let csvData = [];
+
+      if(fetchedData.length>0){
+       
+        csvHeaders = [
+            {
+                label: '#',
+                key: '#'
+            },
+            {
+                label: 'Facility Name',
+                key: 'cf_name'
+            },
+            {
+                label: 'City/Municipality',
+                key: 'city_mun'
+            },
+            {
+                label: 'Province',
+                key: 'province'
+            },   
+            {
+                label: 'Region',
+                key: 'region'
+            }, 
+            {
+                label: 'Patient Admitted',
+                key: 't_patient_adm'
+
+            },
+            {
+                label: 'Patient in ER',
+                key: 't_patient_er'
+            },
+            {
+                label: 'Patient in ICU',
+                key: 't_patient_icu'
+            }               
+            ]
+        csvData = [
+               ...fetchedData
+            ]
+      }
+
+
     return (
-        <div className="mb-5">
-            <FacilitiesTable columns={columns} data={data} >
+        <div className="mb-5 container pt-3">         
+            <FacilitiesTable columns={columns} data={data} csvData={csvData} csvHeaders={csvHeaders}>
             </FacilitiesTable>
         </div>
     )
