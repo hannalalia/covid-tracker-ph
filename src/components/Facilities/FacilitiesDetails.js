@@ -82,10 +82,7 @@ function FacilitiesDetails() {
             {details.length>0 ? 
             (
                 <div>  
-                    <CSVLink data={data} headers={headers}   filename={details[0].cf_name.toUpperCase()+ ".csv"}
-                        className="btn btn-primary m-3 shadow-none">
-                        Export CSV
-                    </CSVLink>              
+                                
                     <div className="m-3">
                     <ul className="list-group">
                         <li className="list-group-item"><b>hfhudcode: </b>{hfhudcode}</li>
@@ -106,14 +103,11 @@ function FacilitiesDetails() {
                         <li className="list-group-item"><b>Occupied Isolation Bed:  </b>{details[0].isolbed_v}</li>
                         <li className="list-group-item"><b>Vacant Beds Ward:  </b>{details[0].beds_ward_v}</li>    
                         <li className="list-group-item"><b>Occupied Beds Ward:  </b>{details[0].beds_ward_o}</li>
-                    </ul>
-              
+                    </ul>             
                     </div>
                     
                     <div className="d-flex m-3">
-
-                    <ul className="list-group flex-fill me-1">
-                        
+                    <ul className="list-group flex-fill me-1">                        
                         <li className="list-group-item"><b>Vacant Mechanical Ventilators: </b>{details[0].mechvent_v}</li>
                         <li className="list-group-item"><b>Occupied Mechanical Ventilators: </b>{details[0].mechvent_o}</li>
                         <li className="list-group-item"><b>Vacant Neonatal ICU (Non-Covid):  </b>{details[0].nonicu_v_nc}</li>
@@ -124,8 +118,6 @@ function FacilitiesDetails() {
                         <li className="list-group-item"><b>Qurantine Doctor:  </b>{details[0].q_doctor}</li>
                         <li className="list-group-item"><b>Nurse Admitted:  </b>{details[0].nurse_adm}</li>
                         <li className="list-group-item"><b>Doctor Admitted:  </b>{details[0].doctor_adm}</li>
-
-
                     </ul>
                     <ul className="list-group flex-fill me-1">
                         <li className="list-group-item"><b>Prob Asymptomatic: </b>{details[0].prob_asym}</li>
@@ -150,9 +142,12 @@ function FacilitiesDetails() {
                         <li className="list-group-item"><b>Total Patient in ICU:  </b>{details[0].t_patient_icu}</li>
                         <li className="list-group-item"><b>Trans ttmf:  </b>{details[0].trans_ttmf}</li>
                         <li className="list-group-item"><b>Discharged:  </b>{details[0].discharged}</li>
-
                     </ul>
                     </div>
+                    <CSVLink data={data} headers={headers}   filename={details[0].cf_name.toUpperCase()+ ".csv"}
+                        className="btn btn-primary m-3 shadow-none btn-sm">
+                        Export CSV
+                    </CSVLink> 
                 </div>
             ):'Facility not found'
             }
