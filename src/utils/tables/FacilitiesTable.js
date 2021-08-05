@@ -1,6 +1,6 @@
 import React from 'react';
 import {useTable, usePagination,useGlobalFilter, useSortBy} from 'react-table';
-import {Table, Form, Button} from 'react-bootstrap';
+import {Table, Form, Button, Row, Col} from 'react-bootstrap';
 import { MdExpandMore,MdExpandLess } from "react-icons/md";
 import {CSVLink} from 'react-csv'
 function FacilitiesTable({data,columns,csvHeaders,csvData}) {
@@ -29,23 +29,26 @@ function FacilitiesTable({data,columns,csvHeaders,csvData}) {
       return (
         <div className="container">
           <h1 className="h1 mt-3 text-center">Facilities</h1>
-          <div className="row justify-content-between my-3 mx-1">
-            <Form.Control as="select" className="w-25 shadow-none"
-            value={pageSize}
-            onChange={e => {
-              setPageSize(Number(e.target.value))
-            }}
-          >
-            {[10, 25, 50, 100].map(pageSize => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </Form.Control>
-          <Form.Control className="w-25 shadow-none" type = "text" placeholder="Search (e.g. Facility/Location)" value={globalFilter||''} 
-              onChange={e=> setGlobalFilter(e.target.value)}>
-          </Form.Control>
-          </div>
+          <Row className="justify-content-between my-3">
+            <Col md={5} xl={3} className="mb-3">
+              <Form.Control as="select" className="shadow-none col-1"
+                value={pageSize}
+                onChange={e => {
+                  setPageSize(Number(e.target.value))
+                }}>   
+                {[10, 25, 50, 100].map(pageSize => (
+                  <option key={pageSize} value={pageSize}>
+                    Show {pageSize}
+                  </option>
+                ))}
+              </Form.Control> 
+            </Col>
+            <Col md={5} xl={3}>
+              <Form.Control className="shadow-none col-1" type = "text" placeholder="Search (e.g. Facility/Location)" value={globalFilter||''} 
+                onChange={e=> setGlobalFilter(e.target.value)}>
+              </Form.Control>
+            </Col>       
+          </Row>
         
         <Table responsive striped bordered hover size="sm" {...getTableProps()}>
           <thead className="">
