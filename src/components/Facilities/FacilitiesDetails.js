@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from '../../utils/axios/BaseUrl'
 import {useParams} from 'react-router-dom'
 import {Button} from 'react-bootstrap';
+import {CSVLink} from 'react-csv'
 function FacilitiesDetails() {    
     const {hfhudcode} = useParams();
     useEffect(() => {
@@ -16,12 +17,35 @@ function FacilitiesDetails() {
 
     const [details, setDetails] = useState([]);
     console.log(details)
-  
+
+      let headers = [];
+      let data = [];
+      if(details.length>0){
+        let row ={};
+        Object.keys(details[0]).map(key=>{
+            return row[key] = details[0][key];
+        })
+        data = [
+            {row}]
+        headers = [
+            { label: "hfhudcode", key: "row.hfhudcode" },
+            { label: "Facility", key: "row.cf_name" },
+            { label: "Update Date", key: "row.updated_date" }
+          ];
+          console.log(data)
+      }
+     
+
     return (
         <div className="mb-5">
+            
             {details.length>0 ? 
             (
-                <div>
+                <div>  
+                    <CSVLink data={data} headers={headers}   filename={details[0].cf_name.toUpperCase()+ ".csv"}
+                        className="btn btn-primary m-3 shadow-none">
+                        Export CSV
+                    </CSVLink>              
                     <div className="m-3">
                     <ul className="list-group">
                         <li className="list-group-item"><b>hfhudcode: </b>{hfhudcode}</li>

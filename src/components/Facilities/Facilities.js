@@ -2,6 +2,8 @@ import React, {useMemo, useState, useEffect} from 'react'
 import FacilitiesTable from '../../utils/tables/FacilitiesTable';
 import axios from '../../utils/axios/BaseUrl'
 import {Button} from 'react-bootstrap';
+
+
 function Facilities() {    
 
     useEffect(() => {
